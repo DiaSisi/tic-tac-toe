@@ -18,12 +18,12 @@ Ejecuta npm install para instalar las dependencias.
 Ejecuta npm start para iniciar la aplicación en modo de desarrollo.
 Abre http://localhost:3000 en tu navegador para ver el juego.
 
-##Tecnologías Utilizadas
+## Tecnologías Utilizadas
 React: Utilizado para construir la interfaz de usuario interactiva del juego.
 CSS: Utilizado para estilizar la apariencia del juego.
 HTML: Estructura básica de la aplicación web.
 
-##Contribución
+## Contribución
 Las contribuciones son bienvenidas. Si deseas contribuir a este proyecto, por favor sigue los siguientes pasos:
 
 Haz un fork del proyecto.
@@ -32,5 +32,5 @@ Haz tus cambios y realiza los commits (git commit -am 'Agrega una nueva implemen
 Sube tus cambios (git push origin feature/implementacion-nueva).
 Abre un Pull Request.
 
-##Licencia
+## Licencia
 Este proyecto está bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
