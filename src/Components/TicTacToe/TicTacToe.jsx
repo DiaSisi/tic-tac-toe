@@ -1,9 +1,9 @@
-import React from "react";
-import './TicTacToe.css';
-import circle_icon from "../Assets/circle.png";
-import cross_icon from "../Assets/cross.png";
+import React from "react"
+import './TicTacToe.css'
+import circle_icon from "../Assets/circle.png"
+import cross_icon from "../Assets/cross.png"
 
-let data = ["", "", "", "", "", "", "", "", ""];
+let data = ["", "", "","", "", "","", "", ""];
 
 const TicTacToe = () => {
     let [count, setCount] = React.useState(0);
@@ -19,61 +19,89 @@ const TicTacToe = () => {
     let box8 = React.useRef(null);
     let box9 = React.useRef(null);
 
-    let box_array = [box1, box2, box3, box4, box5, box6, box7, box8, box9];
+    let box_array = [box1,box2,box3,box4,box5,box6,box7,box8,box9];
 
-    const toggle = (e, num) => {
-        if (lock) {
-            return 0;
-        }
-        if (count % 2 === 0) {
-            e.target.innerHTML = `<img src='${cross_icon}'>`;
-            data[num] = "x";
-            setCount(count + 1);
-        } else {
-            e.target.innerHTML = `<img src='${circle_icon}'>`;
-            data[num] = "o";
-            setCount(count + 1);
-        }
-        checkWin();
-    }
 
+    const toggle = (e,num) => {
+        if(lock){
+             return 0;
+            }
+            console.log(data);
+            if(count%2 === 0)
+            {
+                e.target.innerHTML = `<img src='${cross_icon}'>`;
+                data[num]="x";
+                setCount(++count);
+            }
+            else{
+                e.target.innerHTML = `<img src='${circle_icon}'>`;
+                data[num]="o";
+                setCount(++count); 
+            }
+            checkWin();
+        }
     const checkWin = () => {
-        if (data[0] === data[1] && data[1] === data[2] && data[2] !== "") {
+        if (data[0]===data[1] && data[1]===data[2] && data[2]!=="")
+        {
+            console.log(1);
             won(data[2]);
-        } else if (data[3] === data[4] && data[4] === data[5] && data[5] !== "") {
+        }
+        else if (data[3]===data[4] && data[4]===data[5] && data[5]!=="")
+        {
+            console.log(2);
             won(data[5]);
-        } else if (data[6] === data[7] && data[7] === data[8] && data[8] !== "") {
+        }
+        else if (data[6]===data[7] && data[7]===data[8] && data[8]!=="")
+        {
+            console.log(3);
             won(data[8]);
-        } else if (data[0] === data[3] && data[3] === data[6] && data[6] !== "") {
-            won(data[6]);
-        } else if (data[1] === data[4] && data[4] === data[7] && data[7] !== "") {
-            won(data[7]);
-        } else if (data[2] === data[5] && data[5] === data[8] && data[8] !== "") {
-            won(data[8]);
-        } else if (data[0] === data[4] && data[4] === data[8] && data[8] !== "") {
-            won(data[8]);
-        } else if (data[2] === data[4] && data[4] === data[6] && data[6] !== "") {
+        }
+        else if (data[0]===data[3] && data[3]===data[6] && data[6]!=="")
+        {
+            console.log(4);
             won(data[6]);
         }
+        else if (data[1]===data[4] && data[4]===data[7] && data[7]!=="")
+        {
+            console.log(5);
+            won(data[7]);
+        }
+        else if (data[2]===data[5] && data[5]===data[8] && data[8]!=="")
+        {
+            console.log(6);
+            won(data[8]);
+        }
+        else if (data[0]===data[4] && data[4]===data[8] && data[8]!=="")
+        {
+            console.log(7);
+            won(data[8]);
+        }
+        // else if (data[0]===data[1] && data[1]===data[2] && data[2]!=="")
+        // {
+        //     won(data[2]);
+        // }
+        else if (data[2]===data[4] && data[4]===data[6] && data[6]!=="")
+        {
+            console.log(8);
+            won(data[6]);
+        } 
     }
-
     const won = (winner) => {
         setLock(true);
-        if (winner === "x") {
+        if(winner==="x"){
             titleRef.current.innerHTML = `Gana: <img src='${cross_icon}'>`;
-        } else {
+        }
+        else{
             titleRef.current.innerHTML = `Gana: <img src='${circle_icon}'>`;
         }
-    }
-
+    }    
     const reset = () => {
         setLock(false);
-        data = ["", "", "", "", "", "", "", "", ""];
+        data = ["", "", "","", "", "","", "", ""];
         titleRef.current.innerHTML = 'Tic Tac Toe con <span>React</span>';
-        box_array.forEach((box) => {
-            box.current.innerHTML = "";
-        });
-        setCount(0);
+        box_array.map((e) => {
+            e.current.innerHTML = "";
+        })
     }
 
     return (
@@ -81,24 +109,24 @@ const TicTacToe = () => {
             <h1 className="title" ref={titleRef}>Tic Tac Toe con <span>React</span></h1>
             <div className="board">
                 <div className="row1">
-                    <div className="boxes" ref={box1} onClick={(e) => toggle(e, 0)} data={data[0]}></div>
-                    <div className="boxes" ref={box2} onClick={(e) => toggle(e, 1)} data={data[1]}></div>
-                    <div className="boxes" ref={box3} onClick={(e) => toggle(e, 2)} data={data[2]}></div>
+                    <div className="boxes" ref={box1} onClick={(e) => toggle(e,0)} data={data[0]}></div>
+                    <div className="boxes" ref={box2} onClick={(e) => toggle(e,1)} data={data[1]}></div>
+                    <div className="boxes" ref={box3} onClick={(e) => toggle(e,2)} data={data[2]}></div>
                 </div>
                 <div className="row2">
-                    <div className="boxes" ref={box4} onClick={(e) => toggle(e, 3)} data={data[3]}></div>
-                    <div className="boxes" ref={box5} onClick={(e) => toggle(e, 4)} data={data[4]}></div>
-                    <div className="boxes" ref={box6} onClick={(e) => toggle(e, 5)} data={data[5]}></div>
+                    <div className="boxes" ref={box4} onClick={(e) => toggle(e,3)} data={data[3]}></div>
+                    <div className="boxes" ref={box5} onClick={(e) => toggle(e,4)} data={data[4]}></div>
+                    <div className="boxes" ref={box6} onClick={(e) => toggle(e,5)} data={data[5]}></div>
                 </div>
                 <div className="row3">
-                    <div className="boxes" ref={box7} onClick={(e) => toggle(e, 6)} data={data[6]}></div>
-                    <div className="boxes" ref={box8} onClick={(e) => toggle(e, 7)} data={data[7]}></div>
-                    <div className="boxes" ref={box9} onClick={(e) => toggle(e, 8)} data={data[8]}></div>
+                    <div className="boxes" ref={box7} onClick={(e) => toggle(e,6)} data={data[6]}></div>
+                    <div className="boxes" ref={box8} onClick={(e) => toggle(e,7)} data={data[7]}></div>
+                    <div className="boxes" ref={box9} onClick={(e) => toggle(e,8)} data={data[8]}></div>
                 </div>
             </div>
-            <button className="reset" onClick={reset}>Reset</button>
+            <button className="reset" onClick={() => {reset()}}>Reset</button>
         </div>
-    );
+    )
 }
 
-export default TicTacToe;
+export default TicTacToe
